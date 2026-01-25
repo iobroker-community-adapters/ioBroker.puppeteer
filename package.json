@@ -12,6 +12,7 @@
   "homepage": "https://github.com/foxriver76/ioBroker.puppeteer",
   "license": "MIT",
   "keywords": [
+    "ioBroker",
     "screenshots",
     "visualization",
     "browser"
