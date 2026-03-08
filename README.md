@@ -134,6 +134,9 @@ sendTo('puppeteer.0', 'screenshot', { url: 'https://www.google.com',
 ```
 
 ## Changelog
+
+### **WORK IN PROGRESS**
+- (iobroker-bot) Adapter requires node.js >= 20 now.
 <!--
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
