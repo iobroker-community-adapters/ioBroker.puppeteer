@@ -2,7 +2,7 @@ import * as utils from '@iobroker/adapter-core';
 import type { Page, Browser, ScreenshotOptions, ScreenshotClip, Viewport } from 'puppeteer';
 import puppeteer from 'puppeteer';
 import { isObject } from './lib/tools';
-import { normalize, resolve, sep as pathSeparator } from 'path';
+import { normalize, resolve, sep as pathSeparator } from 'node:path';
 
 class PuppeteerAdapter extends utils.Adapter {
     private browser: Browser | undefined;
