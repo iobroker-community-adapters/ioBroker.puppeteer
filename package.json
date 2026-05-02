@@ -7,7 +7,7 @@
     "email": "moritz.heusinger@gmail.com"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "homepage": "https://github.com/foxriver76/ioBroker.puppeteer",
   "license": "MIT",

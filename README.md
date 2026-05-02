@@ -138,6 +138,9 @@ sendTo('puppeteer.0', 'screenshot', { url: 'https://www.google.com',
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- (copilot) Adapter requires node.js >= 22 now
+
 ### 0.4.0 (2024-09-17)
 * (@foxriver76) updated puppeteer dependency
 * (@foxriver76) allow to specify an external browser for puppeteer
