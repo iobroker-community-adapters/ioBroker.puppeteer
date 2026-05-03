@@ -174,6 +174,8 @@ sendTo('puppeteer.0', 'screenshot', { url: 'https://www.google.com',
 ### 0.1.0 (2022-05-16)
 * (foxriver76) initial release
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 MIT License
 
