@@ -23,8 +23,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var utils = __toESM(require("@iobroker/adapter-core"));
 var import_puppeteer = __toESM(require("puppeteer"));
-var import_tools = require("./lib/tools");
 var import_node_path = require("node:path");
+var import_tools = require("./lib/tools");
 const VALID_WAIT_UNTIL = ["load", "domcontentloaded", "networkidle0", "networkidle2"];
 const DEFAULT_WAIT_UNTIL = "networkidle2";
 const DEFAULT_NAVIGATION_TIMEOUT_MS = 3e4;
