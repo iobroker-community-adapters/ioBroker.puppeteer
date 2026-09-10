@@ -65,7 +65,7 @@
     "check": "tsc --noEmit",
     "lint": "eslint .",
     "translate": "translate-adapter",
-    "release": "release-script -p iobroker"
+    "release": "release-script"
   },
   "bugs": {
     "url": "https://github.com/iobroker-community-adapters/ioBroker.puppeteer/issues"
