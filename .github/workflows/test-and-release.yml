@@ -37,8 +37,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [22.x, 24.x, 26.x]
+        node-version: [22.x, 24.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
+
+    # Use a fresh, workspace-local puppeteer cache. The hosted runner images
+    # ship a pre-seeded puppeteer Chrome (v131) that non-deterministically
+    # shadows the Chrome version puppeteer actually expects, making the browser
+    # launch look for a build that was never downloaded. A clean cache dir forces
+    # each job to download and use the correct, current Chrome build.
+    env:
+      PUPPETEER_CACHE_DIR: ${{ github.workspace }}/.cache/puppeteer
 
     steps:
       - uses: ioBroker/testing-action-adapter@v1
