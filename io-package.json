@@ -118,7 +118,8 @@
       "zh-cn": "基于 Chrome 生成截图的无头浏览器"
     },
     "authors": [
-      "Moritz Heusinger <moritz.heusinger@gmail.com>"
+      "Moritz Heusinger <moritz.heusinger@gmail.com>",
+      "iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
     ],
     "keywords": [
       "screenshots",
@@ -142,7 +143,7 @@
     "dataSource": "poll",
     "dependencies": [
       {
-        "js-controller": ">=5.0.19"
+        "js-controller": ">=6.0.11"
       }
     ],
     "osDependencies": {
@@ -190,7 +191,12 @@
     "licenseInformation": {
       "type": "free",
       "license": "MIT"
-    }
+    },
+    "globalDependencies": [
+      {
+        "admin": ">=7.7.22"
+      }
+    ]
   },
   "native": {
     "additionalArgs": [],
