@@ -67,17 +67,21 @@ class PuppeteerAdapter extends utils.Adapter {
    * Is called when databases are connected and adapter received configuration.
    */
   async onReady() {
-    let additionalArgs;
+    const args = ["--no-sandbox", "--disable-setuid-sandbox"];
     this.renderQueue = new AsyncQueue(this.config.maxParallelRenders || 0);
     if (this.config.additionalArgs) {
-      additionalArgs = this.config.additionalArgs.map((entry) => entry.Argument);
+      for (const entry of this.config.additionalArgs) {
+        if (!args.includes(entry.Argument)) {
+          args.push(entry.Argument);
+        }
+      }
     }
-    this.log.debug(`Additional arguments: ${JSON.stringify(additionalArgs)}`);
+    this.log.debug(`Launch arguments: ${JSON.stringify(args)}`);
     this.browser = await import_puppeteer.default.launch({
       headless: true,
       defaultViewport: null,
       executablePath: this.config.useExternalBrowser ? this.config.executablePath : void 0,
-      args: additionalArgs
+      args
     });
     this.subscribeStates("url");
     this.log.info("Ready to take screenshots");
@@ -122,7 +126,7 @@ class PuppeteerAdapter extends utils.Adapter {
         delete options.url;
       }
       const { waitMethod, waitParameter } = PuppeteerAdapter.extractWaitOptionFromMessage(options);
-      const { storagePath } = PuppeteerAdapter.extractIoBrokerOptionsFromMessage(options);
+      const { storagePath, encoding } = PuppeteerAdapter.extractIoBrokerOptionsFromMessage(options);
       const viewport = PuppeteerAdapter.extractViewportOptionsFromMessage(options);
       const waitUntil = (_a = PuppeteerAdapter.parseWaitUntil(options.waitUntil)) != null ? _a : DEFAULT_WAIT_UNTIL;
       const navigationTimeout = (_b = PuppeteerAdapter.parseNavigationTimeout(options.navigationTimeout)) != null ? _b : DEFAULT_NAVIGATION_TIMEOUT_MS;
@@ -142,7 +146,9 @@ class PuppeteerAdapter extends utils.Adapter {
               await page.setViewport(viewport);
             }
             await page.goto(url, { waitUntil, timeout: navigationTimeout });
-            if (waitMethod && waitMethod in page) {
+            if (waitMethod === "waitForTimeout") {
+              await this.delay(Number(waitParameter) || 0);
+            } else if (waitMethod && waitMethod in page) {
               await page[waitMethod](waitParameter);
             }
             img = await page.screenshot(options);
@@ -155,7 +161,12 @@ class PuppeteerAdapter extends utils.Adapter {
           } finally {
             await PuppeteerAdapter.safeClosePage(page);
           }
-          this.sendTo(obj.from, obj.command, { result: img }, obj.callback);
+          this.sendTo(
+            obj.from,
+            obj.command,
+            { result: img && encoding === "base64" ? Buffer.from(img).toString("base64") : img },
+            obj.callback
+          );
         });
       } catch (e) {
         this.log.error(`Could not take screenshot of "${url}": ${e.message}`);
@@ -342,13 +353,14 @@ class PuppeteerAdapter extends utils.Adapter {
    * @param options obj.message part of a message passed by user
    */
   static extractIoBrokerOptionsFromMessage(options) {
-    var _a;
+    var _a, _b;
     let storagePath;
     if (typeof ((_a = options.ioBrokerOptions) == null ? void 0 : _a.storagePath) === "string") {
       storagePath = options.ioBrokerOptions.storagePath;
     }
+    const encoding = ((_b = options.ioBrokerOptions) == null ? void 0 : _b.encoding) === "base64" ? "base64" : void 0;
     delete options.ioBrokerOptions;
-    return { storagePath };
+    return { storagePath, encoding };
   }
   /**
    * Extracts the viewport specific options from the message

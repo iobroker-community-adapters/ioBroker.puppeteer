@@ -23,6 +23,18 @@ declare global {
             executablePath: string;
 
             /**
+             * Instance of `ioBroker.web` this adapter registers its web extension with,
+             * e.g. `web.0`. `*` (default) means every web instance.
+             */
+            webInstance?: string;
+
+            /**
+             * URL path the web extension is served under, e.g. `puppeteer` results in
+             * `http://<web-ip>:8082/puppeteer/?url=...`. Must be unique per instance.
+             */
+            webPath?: string;
+
+            /**
              * Maximum number of parallel renders (screenshots/pages active).
              * 0 means unlimited (default). Used to save RAM.
              */

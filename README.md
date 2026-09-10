@@ -169,6 +169,33 @@ curl -X 'GET' \
   -H 'accept: application/json'
 ```
 
+## Web extension
+The adapter registers itself as a web extension of the `web` adapter, so screenshots can be triggered by simply calling a link.
+No extra port is opened: the routes live on the web instance you select in the adapter settings and therefore share its
+http/https setting and its authentication.
+
+Settings:
+
+- **Web instance** - which `web` instance serves the link (`*` = all of them).
+- **URL path** - the path the extension is mounted on (default `puppeteer`). It must be unique if several puppeteer instances extend the same web instance.
+
+With the defaults the screenshot is available at `http://<web-ip>:8082/puppeteer/?url=<URL>`, where URL is the page you want to capture.
+You can also specify additional parameters:
+- `fullPage=true` to take a screenshot of the full page
+- `waitForSelector=#testId` to wait for a given selector before taking the screenshot
+- `waitForTimeout=5000` to wait for a given time in ms before taking the screenshot (only used if `waitForSelector` is not set)
+- `width=800&height=600` to specify the viewport size for the screenshot
+- `clipLeft=0&clipTop=0&clipWidth=800&clipHeight=600` to specify the crop options for the screenshot
+- `quality=80` to specify the quality of the screenshot (only for jpeg/webp)
+- `omitBackground=true` to hide the default white background and allow capturing screenshots with transparency
+- `encoding=base64` to specify the encoding of the image (default is binary)
+- `captureBeyondViewport=true` to allow taking screenshots bigger than the viewport (default is true)
+- `type=jpeg/png/webp` to specify the type of the screenshot (default is png)
+- `waitUntil=load|domcontentloaded|networkidle0|networkidle2` controls when navigation is considered finished (default: `networkidle2`). See **Tips for live-data dashboards** below.
+- `navigationTimeout=15000` maximum time in ms for `page.goto()` and subsequent waits (default: `30000`). Lower values free up renderer processes faster when a page hangs.
+
+The response is the binary representation of the image that can be directly displayed in the browser or a base64 string as `{ result: "base64" }` depending on the specified encoding.
+
 ### Tips for live-data dashboards (vis / vis-2 / Lovelace / Grafana)
 The default `waitUntil=networkidle2` waits until the page has fewer than three open network connections for 500 ms. Dashboards that hold a permanent WebSocket or Server-Sent-Events connection — including **ioBroker vis / vis-2**, **Home Assistant Lovelace** and **Grafana** — never reach that state, so every screenshot will block until `navigationTimeout` (default 30 s) elapses. While the page hangs, its Chromium renderer process keeps eating ~100–200 MB RSS.
 
@@ -191,7 +218,7 @@ Optional: append a small `waitForTimeout` (e.g. `200`) for chart animations to s
 Example:
 
 ```
-http://<ioBroker-IP>:10000?url=http://homeassistant.local:8123/lovelace/0&waitUntil=load&waitForSelector=hui-view&waitForTimeout=300
+http://<web-ip>:8082/puppeteer/?url=http://homeassistant.local:8123/lovelace/0&waitUntil=load&waitForSelector=hui-view&waitForTimeout=300
 ```
 ## Credits
 This adapter would not have been possible without the great work of @foxriver67 (https://github.com/foxriver76), who created pre previous releases of this adapter.
@@ -202,6 +229,7 @@ This adapter would not have been possible without the great work of @foxriver67 
     ### **WORK IN PROGRESS**
 -->
 ### **WORK IN PROGRESS**
+* (@GermanBluefox) Added a web extension for `ioBroker.web`, so screenshots can be taken by calling a link
 * (@GermanBluefox) Added the option to limit the simultaneous renders to avoid overload of the system
 * (@GermanBluefox) Fixed renderer-process leak when navigation or screenshot threw — pages are now always closed
 * (@GermanBluefox) Added per-request `waitUntil` and `navigationTimeout` parameters (message API + web server) to support live-data dashboards (vis, Lovelace, Grafana) without hitting the network-idle timeout

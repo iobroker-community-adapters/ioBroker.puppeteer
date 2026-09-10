@@ -40,136 +40,6 @@
             "uk": "Шлях до зовнішнього браузера",
             "zh-cn": "外部浏览器的路径"
         },
-        "allowWebRequests": {
-            "en": "Allow web requests",
-            "de": "Webanfragen erlauben",
-            "ru": "Разрешить веб-запросы",
-            "pt": "Permitir solicitações da web",
-            "nl": "Webverzoeken toestaan",
-            "fr": "Autoriser les requêtes Web",
-            "it": "Consenti le richieste web",
-            "es": "Permitir solicitudes web",
-            "pl": "Zezwól na żądania sieciowe",
-            "uk": "Разрешити веб-запити",
-            "zh-cn": "允许网络请求"
-        },
-        "allowWebRequestsHelp": {
-            "en": "Allow to request the screenshot via web request. This will open a port to listen for incoming requests.",
-            "de": "Erlauben Sie, den Screenshot über eine Webanfrage anzufordern. Dadurch wird ein Port geöffnet, um eingehende Anfragen zu empfangen.",
-            "ru": "Разрешить запрашивать скриншот через веб-запрос. Это откроет порт для прослушивания входящих запросов.",
-            "pt": "Permitir solicitar a captura de tela via solicitação da web. Isso abrirá uma porta para ouvir as solicitações recebidas.",
-            "nl": "Sta toe om het screenshot op te vragen via een webverzoek. Hierdoor wordt een poort geopend om inkomende verzoeken te beluisteren.",
-            "fr": "Autoriser la demande de capture d'écran via une requête Web. Cela ouvrira un port pour écouter les demandes entrantes.",
-            "it": "Consentire la richiesta dello screenshot tramite richiesta web. Ciò aprirà una porta per ascoltare le richieste in arrivo.",
-            "es": "Permitir solicitar la captura de pantalla a través de una solicitud web. Esto abrirá un puerto para escuchar las solicitudes entrantes.",
-            "pl": "Zezwól na żądanie zrzutu ekranu za pomocą żądania sieciowego. To otworzy port do nasłuchiwania przychodzących żądań.",
-            "uk": "Дозволити запитувати скриншот через веб-запрос. Это откроет порт для прослушивания входящих запросов.",
-            "zh-cn": "允许通过网络请求请求屏幕截图。这将打开一个端口来监听传入的请求。"
-        },
-        "webPort": {
-            "en": "Web port",
-            "de": "Web Port",
-            "ru": "Веб-порт",
-            "pt": "Porta da web",
-            "nl": "Webpoort",
-            "fr": "Port Web",
-            "it": "Porta web",
-            "es": "Puerto web",
-            "pl": "Port sieciowy",
-            "uk": "Веб-порт",
-            "zh-cn": "网络端口"
-        },
-        "bindAddress": {
-            "en": "IP / Bind address",
-            "de": "IP / Bind-Adresse",
-            "ru": "IP / Адрес привязки",
-            "pt": "IP / Endereço de ligação",
-            "nl": "IP / Bindadres",
-            "fr": "IP / Adresse de liaison",
-            "it": "IP / Indirizzo di bind",
-            "es": "IP / Dirección de enlace",
-            "pl": "IP / Adres powiązania",
-            "uk": "IP / Адреса прив'язки",
-            "zh-cn": "IP / 绑定地址"
-        },
-        "port": {
-            "en": "Port",
-            "de": "Port",
-            "ru": "Порт",
-            "pt": "Porta",
-            "nl": "Poort",
-            "fr": "Port",
-            "it": "Porta",
-            "es": "Puerto",
-            "pl": "Port",
-            "uk": "Порт",
-            "zh-cn": "端口"
-        },
-        "secure": {
-            "en": "Secure (HTTPS)",
-            "de": "Sicher (HTTPS)",
-            "ru": "Безопасный (HTTPS)",
-            "pt": "Seguro (HTTPS)",
-            "nl": "Beveiligd (HTTPS)",
-            "fr": "Sécurisé (HTTPS)",
-            "it": "Sicuro (HTTPS)",
-            "es": "Seguro (HTTPS)",
-            "pl": "Bezpieczny (HTTPS)",
-            "uk": "Захищений (HTTPS)",
-            "zh-cn": "安全 (HTTPS)"
-        },
-        "certPublic": {
-            "en": "Public certificate",
-            "de": "Öffentliches Zertifikat",
-            "ru": "Публичный сертификат",
-            "pt": "Certificado público",
-            "nl": "Openbaar certificaat",
-            "fr": "Certificat public",
-            "it": "Certificato pubblico",
-            "es": "Certificado público",
-            "pl": "Certyfikat publiczny",
-            "uk": "Публічний сертифікат",
-            "zh-cn": "公共证书"
-        },
-        "certPrivate": {
-            "en": "Private certificate",
-            "de": "Privates Zertifikat",
-            "ru": "Частный сертификат",
-            "pt": "Certificado privado",
-            "nl": "Privé certificaat",
-            "fr": "Certificat privé",
-            "it": "Certificato privato",
-            "es": "Certificado privado",
-            "pl": "Certyfikat prywatny",
-            "uk": "Приватний сертифікат",
-            "zh-cn": "私有证书"
-        },
-        "certChained": {
-            "en": "Chained certificate",
-            "de": "Verkettetes Zertifikat",
-            "ru": "Цепочка сертификатов",
-            "pt": "Certificado encadeado",
-            "nl": "Geketend certificaat",
-            "fr": "Certificat chaîné",
-            "it": "Certificato concatenato",
-            "es": "Certificado encadenado",
-            "pl": "Certyfikat łańcuchowy",
-            "uk": "Ланцюговий сертифікат",
-            "zh-cn": "链式证书"
-        },
-        "auth": {
-            "en": "Authentication",
-            "de": "Authentifizierung",
-            "ru": "Аутентификация",
-            "pt": "Autenticação",
-            "nl": "Authenticatie",
-            "fr": "Authentification",
-            "it": "Autenticazione",
-            "es": "Autenticación",
-            "pl": "Uwierzytelnianie",
-            "uk": "Аутентифікація",
-            "zh-cn": "身份验证"
-        },
         "argument": {
             "en": "Argument",
             "de": "Argument",
@@ -182,58 +52,6 @@
             "pl": "Argument",
             "uk": "Аргумент",
             "zh-cn": "参数"
-        },
-        "warningTitle": {
-            "en": "Warning!",
-            "de": "Warnung!",
-            "ru": "Предупреждение!",
-            "pt": "Aviso!",
-            "nl": "Waarschuwing!",
-            "fr": "Avertissement !",
-            "it": "Attenzione!",
-            "es": "¡Advertencia!",
-            "pl": "Ostrzeżenie!",
-            "uk": "Попередження!",
-            "zh-cn": "警告！"
-        },
-        "unsecureAuth": {
-            "en": "Authentication is enabled without HTTPS. Credentials may be transmitted in plain text. Are you sure?",
-            "de": "Authentifizierung ist ohne HTTPS aktiviert. Zugangsdaten könnten im Klartext übertragen werden. Sind Sie sicher?",
-            "ru": "Аутентификация включена без HTTPS. Учётные данные могут передаваться в открытом виде. Вы уверены?",
-            "pt": "A autenticação está ativada sem HTTPS. As credenciais podem ser transmitidas em texto simples. Tem certeza?",
-            "nl": "Authenticatie is ingeschakeld zonder HTTPS. Inloggegevens kunnen in platte tekst worden verzonden. Weet u het zeker?",
-            "fr": "L'authentification est activée sans HTTPS. Les identifiants peuvent être transmis en clair. Êtes-vous sûr ?",
-            "it": "L'autenticazione è abilitata senza HTTPS. Le credenziali potrebbero essere trasmesse in chiaro. Sei sicuro?",
-            "es": "La autenticación está habilitada sin HTTPS. Las credenciales pueden transmitirse en texto plano. ¿Está seguro?",
-            "pl": "Uwierzytelnianie jest włączone bez HTTPS. Dane uwierzytelniające mogą być przesyłane w postaci zwykłego tekstu. Czy jesteś pewny?",
-            "uk": "Аутентифікацію увімкнено без HTTPS. Облікові дані можуть передаватися у відкритому вигляді. Ви впевнені?",
-            "zh-cn": "已在没有 HTTPS 的情况下启用身份验证。凭据可能以明文传输。你确定吗？"
-        },
-        "ignoreWarning": {
-            "en": "Ignore warning",
-            "de": "Warnung ignorieren",
-            "ru": "Игнорировать предупреждение",
-            "pt": "Ignorar aviso",
-            "nl": "Waarschuwing negeren",
-            "fr": "Ignorer l'avertissement",
-            "it": "Ignora avviso",
-            "es": "Ignorar advertencia",
-            "pl": "Zignoruj ostrzeżenie",
-            "uk": "Ігнорувати попередження",
-            "zh-cn": "忽略警告"
-        },
-        "disableAuth": {
-            "en": "Disable authentication",
-            "de": "Authentifizierung deaktivieren",
-            "ru": "Отключить аутентификацию",
-            "pt": "Desativar autenticação",
-            "nl": "Authenticatie uitschakelen",
-            "fr": "Désactiver l'authentification",
-            "it": "Disabilita autenticazione",
-            "es": "Deshabilitar autenticación",
-            "pl": "Wyłącz uwierzytelnianie",
-            "uk": "Вимкнути автентифікацію",
-            "zh-cn": "禁用身份验证"
         },
         "maxParallelRenders": {
             "en": "Max. parallel renders",
@@ -260,6 +78,58 @@
             "pl": "Ile zrzutów ekranu/stron powinno być aktywnych jednocześnie. 0 = bez limitu. Ustawić to, aby zaoszczędzić RAM.",
             "uk": "Скільки скріншотів/сторінок повинно бути активними одночасно. 0 = необмежено. Зменшіть, щоб заощадити RAM.",
             "zh-cn": "同时允许多少个屏幕截图/页面处于活动状态。 0 = 无限制。将其调低以减少 RAM 使用。"
+        },
+        "webInstance": {
+            "en": "Web instance",
+            "de": "Web-Instanz",
+            "ru": "Экземпляр web",
+            "pt": "Instância web",
+            "nl": "Web-instantie",
+            "fr": "Instance web",
+            "it": "Istanza web",
+            "es": "Instancia web",
+            "pl": "Instancja web",
+            "uk": "Екземпляр web",
+            "zh-cn": "Web 实例"
+        },
+        "webInstanceHelp": {
+            "en": "Instance of the web adapter that provides the screenshot link. '*' means all web instances.",
+            "de": "Instanz des Web-Adapters, die den Screenshot-Link bereitstellt. '*' bedeutet alle Web-Instanzen.",
+            "ru": "Экземпляр адаптера web, который предоставляет ссылку для скриншота. '*' — все экземпляры web.",
+            "pt": "Instância do adaptador web que fornece o link da captura de tela. '*' significa todas as instâncias web.",
+            "nl": "Instantie van de web-adapter die de screenshot-link levert. '*' betekent alle web-instanties.",
+            "fr": "Instance de l'adaptateur web qui fournit le lien de capture d'écran. '*' signifie toutes les instances web.",
+            "it": "Istanza dell'adattatore web che fornisce il link dello screenshot. '*' significa tutte le istanze web.",
+            "es": "Instancia del adaptador web que proporciona el enlace de la captura de pantalla. '*' significa todas las instancias web.",
+            "pl": "Instancja adaptera web, która udostępnia link do zrzutu ekranu. '*' oznacza wszystkie instancje web.",
+            "uk": "Екземпляр адаптера web, який надає посилання для знімка екрана. '*' означає всі екземпляри web.",
+            "zh-cn": "提供截图链接的 web 适配器实例。'*' 表示所有 web 实例。"
+        },
+        "webPath": {
+            "en": "URL path",
+            "de": "URL-Pfad",
+            "ru": "Путь URL",
+            "pt": "Caminho da URL",
+            "nl": "URL-pad",
+            "fr": "Chemin de l'URL",
+            "it": "Percorso URL",
+            "es": "Ruta URL",
+            "pl": "Ścieżka URL",
+            "uk": "Шлях URL",
+            "zh-cn": "URL 路径"
+        },
+        "webPathHelp": {
+            "en": "Screenshots are available at http://<web-ip>:8082/<path>/?url=... Must be unique if several puppeteer instances use the same web instance.",
+            "de": "Screenshots sind unter http://<web-ip>:8082/<Pfad>/?url=... erreichbar. Muss eindeutig sein, wenn mehrere Puppeteer-Instanzen dieselbe Web-Instanz nutzen.",
+            "ru": "Скриншоты доступны по адресу http://<web-ip>:8082/<путь>/?url=... Должен быть уникальным, если несколько экземпляров puppeteer используют один экземпляр web.",
+            "pt": "As capturas de tela ficam disponíveis em http://<web-ip>:8082/<caminho>/?url=... Deve ser único se várias instâncias do puppeteer usarem a mesma instância web.",
+            "nl": "Screenshots zijn beschikbaar op http://<web-ip>:8082/<pad>/?url=... Moet uniek zijn als meerdere puppeteer-instanties dezelfde web-instantie gebruiken.",
+            "fr": "Les captures d'écran sont disponibles sur http://<web-ip>:8082/<chemin>/?url=... Doit être unique si plusieurs instances puppeteer utilisent la même instance web.",
+            "it": "Gli screenshot sono disponibili su http://<web-ip>:8082/<percorso>/?url=... Deve essere univoco se più istanze di puppeteer usano la stessa istanza web.",
+            "es": "Las capturas están disponibles en http://<web-ip>:8082/<ruta>/?url=... Debe ser único si varias instancias de puppeteer usan la misma instancia web.",
+            "pl": "Zrzuty ekranu są dostępne pod http://<web-ip>:8082/<ścieżka>/?url=... Musi być unikalna, jeśli kilka instancji puppeteer korzysta z tej samej instancji web.",
+            "uk": "Знімки екрана доступні за адресою http://<web-ip>:8082/<шлях>/?url=... Має бути унікальним, якщо кілька екземплярів puppeteer використовують той самий екземпляр web.",
+            "zh-cn": "截图可通过 http://<web-ip>:8082/<路径>/?url=... 访问。若多个 puppeteer 实例使用同一个 web 实例，该路径必须唯一。"
         }
     },
     "items": {
@@ -278,7 +148,9 @@
             "newLine": true,
             "label": "additionalLaunchArgs",
             "type": "table",
-            "uniqueColumns": ["Argument"],
+            "uniqueColumns": [
+                "Argument"
+            ],
             "xs": 12,
             "items": [
                 {
@@ -288,7 +160,10 @@
                     "sort": false,
                     "type": "autocomplete",
                     "freeSolo": true,
-                    "options": ["--disable-lcd-text", "--disable-composited-antialiasing"]
+                    "options": [
+                        "--disable-lcd-text",
+                        "--disable-composited-antialiasing"
+                    ]
                 }
             ]
         },
@@ -300,94 +175,26 @@
             "label": "maxParallelRenders",
             "help": "maxParallelRendersHelp"
         },
-        "allowWebAccess": {
+        "webInstance": {
             "newLine": true,
-            "type": "checkbox",
-            "label": "allowWebRequests",
-            "help": "allowWebRequestsHelp"
-        },
-        "bind": {
-            "hidden": "!data.allowWebAccess",
-            "newLine": true,
-            "type": "ip",
-            "listenOnAllPorts": true,
-            "label": "bindAddress",
-            "xs": 12,
-            "sm": 12,
-            "md": 8,
-            "lg": 5
-        },
-        "port": {
-            "hidden": "!data.allowWebAccess",
-            "type": "number",
-            "min": 1,
-            "max": 65565,
-            "label": "port",
-            "xs": 12,
-            "sm": 12,
-            "md": 4,
-            "lg": 3
-        },
-        "secure": {
-            "hidden": "!data.allowWebAccess",
-            "newLine": true,
-            "type": "checkbox",
-            "label": "secure",
+            "type": "instance",
+            "adapter": "web",
+            "all": true,
+            "label": "webInstance",
+            "help": "webInstanceHelp",
             "xs": 12,
             "sm": 12,
             "md": 6,
-            "lg": 2
+            "lg": 4
         },
-        "certPublic": {
-            "type": "certificate",
-            "hidden": "!data.secure || !data.allowWebAccess",
-            "certType": "public",
-            "validator": "!data.secure || data.certPublic",
-            "label": "certPublic",
+        "webPath": {
+            "type": "text",
+            "label": "webPath",
+            "help": "webPathHelp",
             "xs": 12,
             "sm": 12,
             "md": 6,
-            "lg": 2
-        },
-        "certPrivate": {
-            "hidden": "!data.secure || !data.allowWebAccess",
-            "type": "certificate",
-            "certType": "private",
-            "validator": "!data.secure || data.certPrivate",
-            "label": "certPrivate",
-            "xs": 12,
-            "sm": 12,
-            "md": 6,
-            "lg": 2
-        },
-        "certChained": {
-            "hidden": "!data.secure || !data.allowWebAccess",
-            "type": "certificate",
-            "certType": "chained",
-            "label": "certChained",
-            "xs": 12,
-            "sm": 12,
-            "md": 6,
-            "lg": 2
-        },
-        "auth": {
-            "newLine": true,
-            "hidden": "!data.allowWebAccess",
-            "type": "checkbox",
-            "confirm": {
-                "condition": "!data.secure && data.auth",
-                "title": "warningTitle",
-                "text": "unsecureAuth",
-                "ok": "ignoreWarning",
-                "cancel": "disableAuth",
-                "type": "warning",
-                "alsoDependsOn": ["secure"]
-            },
-            "label": "auth",
-            "xs": 12,
-            "sm": 12,
-            "md": 6,
-            "lg": 2
+            "lg": 4
         }
     }
 }

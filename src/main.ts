@@ -130,7 +130,7 @@ class PuppeteerAdapter extends utils.Adapter {
             }
 
             const { waitMethod, waitParameter } = PuppeteerAdapter.extractWaitOptionFromMessage(options);
-            const { storagePath } = PuppeteerAdapter.extractIoBrokerOptionsFromMessage(options);
+            const { storagePath, encoding } = PuppeteerAdapter.extractIoBrokerOptionsFromMessage(options);
             const viewport = PuppeteerAdapter.extractViewportOptionsFromMessage(options);
             const waitUntil = PuppeteerAdapter.parseWaitUntil(options.waitUntil) ?? DEFAULT_WAIT_UNTIL;
             const navigationTimeout =
@@ -158,7 +158,10 @@ class PuppeteerAdapter extends utils.Adapter {
                         await page.goto(url, { waitUntil, timeout: navigationTimeout });
 
                         // if wait options given, await them
-                        if (waitMethod && waitMethod in page) {
+                        if (waitMethod === 'waitForTimeout') {
+                            // Page.waitForTimeout no longer exists in puppeteer, so wait here instead
+                            await this.delay(Number(waitParameter) || 0);
+                        } else if (waitMethod && waitMethod in page) {
                             await (page as any)[waitMethod](waitParameter);
                         }
 
@@ -173,7 +176,12 @@ class PuppeteerAdapter extends utils.Adapter {
                         await PuppeteerAdapter.safeClosePage(page);
                     }
 
-                    this.sendTo(obj.from, obj.command, { result: img }, obj.callback);
+                    this.sendTo(
+                        obj.from,
+                        obj.command,
+                        { result: img && encoding === 'base64' ? Buffer.from(img).toString('base64') : img },
+                        obj.callback,
+                    );
                 });
             } catch (e) {
                 this.log.error(`Could not take screenshot of "${url}": ${e.message}`);
@@ -395,14 +403,19 @@ class PuppeteerAdapter extends utils.Adapter {
      */
     private static extractIoBrokerOptionsFromMessage(options: Record<string, any>): {
         storagePath: string | undefined;
+        encoding: 'base64' | undefined;
     } {
         let storagePath: string | undefined;
         if (typeof options.ioBrokerOptions?.storagePath === 'string') {
             storagePath = options.ioBrokerOptions.storagePath;
         }
 
+        // The web extension asks for base64: the image travels through the states database as JSON,
+        // where a raw Uint8Array degenerates into a map of indices that is several times the size.
+        const encoding = options.ioBrokerOptions?.encoding === 'base64' ? 'base64' : undefined;
+
         delete options.ioBrokerOptions;
-        return { storagePath };
+        return { storagePath, encoding };
     }
 
     /**
