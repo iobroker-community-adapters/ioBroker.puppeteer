@@ -22,6 +22,8 @@
     "url": "git@github.com:iobroker-community-adapters/ioBroker.puppeteer.git"
   },
   "dependencies": {
+    "@alcalzone/release-script-plugin-license": "^5.2.2",
+    "@alcalzone/release-script-plugin-manual-review": "^5.2.0",
     "@iobroker/adapter-core": "^3.4.3",
     "puppeteer": "^24.43.1"
   },
