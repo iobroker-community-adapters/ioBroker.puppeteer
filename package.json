@@ -7,7 +7,7 @@
     "iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
   ],
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "homepage": "https://github.com/foxriver76/ioBroker.puppeteer",
   "license": "MIT",
