@@ -128,8 +128,8 @@
     "platform": "Javascript/Node.js",
     "icon": "puppeteer.png",
     "enabled": true,
-    "extIcon": "https://raw.githubusercontent.com/foxriver76/ioBroker.puppeteer/main/admin/puppeteer.png",
-    "readme": "https://github.com/foxriver76/ioBroker.puppeteer/blob/main/README.md",
+    "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.puppeteer/main/admin/puppeteer.png",
+    "readme": "https://github.com/iobroker-community-adapters/ioBroker.puppeteer/blob/main/README.md",
     "loglevel": "info",
     "mode": "daemon",
     "adminUI": {
