@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "puppeteer",
-    "version": "0.4.0",
+    "version": "1.0.0",
     "news": {
+      "1.0.0": {
+        "en": "Adapter requires node.js >= 22 now.\nAdapter requires js-controller >= 6.0.11 now\nAdapter requires admin >= 7.7.22 now\nAdapter has been migrated to iobroker-community-adapters organisation",
+        "de": "Adapter benötigt jetzt node.js >= 22.\nAdapter benötigt jetzt JS-Controller >= 6.0.11\nAdapter benötigt jetzt admin >= 7.7.22\nDer Adapter wurde zur Organisation Iobroker-Community-Adapters migriert",
+        "ru": "Теперь для адаптера требуется файл node.js >= 22.\nТеперь для адаптера требуется js-контроллер >= 6.0.11\nДля адаптера теперь требуется администратор >= 7.7.22\nАдаптер перенесен в организацию iobroker-community-adapters",
+        "pt": "O adaptador exige node.js >= 2.\nO adaptador exige js-controller >= 6.0.11\nAgora o adaptador exige admin >= 7.7.2\nO adaptador foi migrado para iobroker-community-adapters organization",
+        "nl": "Voor de adapter is nu node.js >= 22 nodig.\nVoor de adapter is nu een js-controller >= 6.0.11 nodig\nAdapter vereist nu admin >= 7.7.22\nDe adapter is gemigreerd naar de organisatie iobroker-community-adapters",
+        "fr": "Adapter nécessite node.js >= 22.\nAdapter nécessite JS-Controller >= 6.0.11\nAdapter nécessite admin >= 7.7.22\nL'adaptateur a été migré vers l'organisation Iobroker-Community-Adapters",
+        "it": "Adapter richiede node.js >= 2 ora.\nAdapter richiede js-controller >= 6.0.11 ora\nAdapter richiede admin >= 7.7.2 ora\nAdapter è stato migrato a iobroker-community-adapters",
+        "es": "El adaptador necesita node.js >= 22 ahora.\nEl adaptador ahora requiere js-controller >= 6.0.11\nEl adaptador necesita admin >= 7.7.22 ahora\nEl adaptador se ha migrado a la organización iobroker-community adapter",
+        "pl": "Adapter wymaga teraz node.js >= 22.\nAdapter wymaga kontrolera js->= 6.0.11 teraz\nAdapter wymaga administratora >= 7.7.22 teraz\nAdapter został przeniesiony do organizacji iobroker-community-adapters",
+        "uk": "Тепер адаптер вимагає node.js >= 22.\nАдаптер вимагає js-контролера >= 6.0.11 зараз\nАдаптер вимагає адміністратора >= 7.7.22 зараз\nАдаптер перенесено до організації адаптерів спільноти iobroker",
+        "zh-cn": "适配器现在需要 node.js >= 22。\n适配器现在需要 js-controller >= 6.0.11\n适配器现在需要管理员 >= 7.7.22\n适配器已迁移到 iobroker 社区适配器组织"
+      },
       "0.4.0": {
         "en": "updated puppeteer dependency\nallow to specify an external browser for puppeteer",
         "de": "aktualisierte puppeteer abhängigkeit\neinen externen browser für puppenspieler angeben",
@@ -78,18 +91,6 @@
         "es": "hemos optimizado la opción viewport",
         "pl": "zoptymalizowano opcję teleportu",
         "zh-cn": "我们最佳地利用了看法。"
-      },
-      "0.2.4": {
-        "en": "allow settings viewport options\nthe default viewport is now the max resolution",
-        "de": "optionen für einstellungen anzeigen\nder standard-viewport ist jetzt die maximale auflösung",
-        "ru": "разрешить настройки viewport варианты\nviewport по умолчанию теперь максимальное разрешение",
-        "pt": "permitir opções de visualização de configurações\no viewport padrão é agora a resolução máxima",
-        "nl": "vertaling:\nhet betreffende uitzicht is nu de maximale oplossing",
-        "fr": "les options de visualisation des paramètres\nle viewport par défaut est maintenant la résolution max",
-        "it": "consentire impostazioni viewport opzioni\nla vista predefinita è ora la risoluzione massima",
-        "es": "permite opciones de configuración viewport\nel puerto de vista predeterminado es ahora la resolución máxima",
-        "pl": "pozwalać na użycie opcji widokowej\ndomyślny portal to obecnie maxową rozdzielczość",
-        "zh-cn": "允许环境选择\n现在,拖欠国是最高决议。"
       }
     },
     "titleLang": {

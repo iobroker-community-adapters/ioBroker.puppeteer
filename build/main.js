@@ -24,7 +24,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var utils = __toESM(require("@iobroker/adapter-core"));
 var import_puppeteer = __toESM(require("puppeteer"));
 var import_tools = require("./lib/tools");
-var import_path = require("path");
+var import_node_path = require("node:path");
 class PuppeteerAdapter extends utils.Adapter {
   constructor(options = {}) {
     super({ ...options, name: "puppeteer" });
@@ -37,16 +37,20 @@ class PuppeteerAdapter extends utils.Adapter {
    * Is called when databases are connected and adapter received configuration.
    */
   async onReady() {
-    let additionalArgs;
+    const args = ["--no-sandbox", "--disable-setuid-sandbox"];
     if (this.config.additionalArgs) {
-      additionalArgs = this.config.additionalArgs.map((entry) => entry.Argument);
+      for (const entry of this.config.additionalArgs) {
+        if (!args.includes(entry.Argument)) {
+          args.push(entry.Argument);
+        }
+      }
     }
-    this.log.debug(`Additional arguments: ${JSON.stringify(additionalArgs)}`);
+    this.log.debug(`Launch arguments: ${JSON.stringify(args)}`);
     this.browser = await import_puppeteer.default.launch({
       headless: true,
       defaultViewport: null,
       executablePath: this.config.useExternalBrowser ? this.config.executablePath : void 0,
-      args: additionalArgs
+      args
     });
     this.subscribeStates("url");
     this.log.info("Ready to take screenshots");
@@ -213,12 +217,12 @@ class PuppeteerAdapter extends utils.Adapter {
    * @param path path to check
    */
   validatePath(path) {
-    path = (0, import_path.resolve)((0, import_path.normalize)(path));
+    path = (0, import_node_path.resolve)((0, import_node_path.normalize)(path));
     this.log.debug(`Checking path "${path}"`);
     if (path.startsWith(utils.getAbsoluteDefaultDataDir())) {
       throw new Error("Screenshots cannot be stored inside the ioBroker storage");
     }
-    if (path.includes(`${import_path.sep}node_modules${import_path.sep}`)) {
+    if (path.includes(`${import_node_path.sep}node_modules${import_node_path.sep}`)) {
       throw new Error("Screenshots cannot be stored inside a node_modules folder");
     }
   }
