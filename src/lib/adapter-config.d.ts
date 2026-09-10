@@ -4,15 +4,32 @@
 declare global {
     namespace ioBroker {
         interface AdapterConfig {
-            /** Additional args for puppeteer launch */
+            /**
+             * Additional command-line arguments passed to the Puppeteer browser on launch.
+             * Each entry must contain an `Argument` string (e.g. `--no-sandbox`).
+             */
             additionalArgs: { Argument: string }[];
-            /** If an external browser should be used, specified by `executablePath` */
+
+            /**
+             * When `true`, Puppeteer uses the browser binary defined by `executablePath`
+             * instead of the bundled Chromium version.
+             */
             useExternalBrowser: boolean;
-            /** Optional executable path to use external browser */
+
+            /**
+             * Absolute path to an external browser executable (e.g. `/usr/bin/google-chrome`).
+             * Only relevant when `useExternalBrowser` is `true`.
+             */
             executablePath: string;
+
+            /**
+             * Maximum number of parallel renders (screenshots/pages active).
+             * 0 means unlimited (default). Used to save RAM.
+             */
+            maxParallelRenders?: number;
         }
     }
 }
 
-// this is required so the above AdapterConfig is found by TypeScript / type checking
+// this is required, so the above AdapterConfig is found by TypeScript / type checking
 export {};

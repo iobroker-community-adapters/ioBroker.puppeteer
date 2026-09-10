@@ -1,11 +1,50 @@
 import * as utils from '@iobroker/adapter-core';
-import type { Page, Browser, ScreenshotOptions, ScreenshotClip, Viewport } from 'puppeteer';
+import type { Page, Browser, ScreenshotOptions, ScreenshotClip, Viewport, PuppeteerLifeCycleEvent } from 'puppeteer';
 import puppeteer from 'puppeteer';
-import { isObject } from './lib/tools';
 import { normalize, resolve, sep as pathSeparator } from 'node:path';
+import { isObject } from './lib/tools';
+
+const VALID_WAIT_UNTIL = ['load', 'domcontentloaded', 'networkidle0', 'networkidle2'] as const;
+const DEFAULT_WAIT_UNTIL: PuppeteerLifeCycleEvent = 'networkidle2';
+const DEFAULT_NAVIGATION_TIMEOUT_MS = 30_000;
+
+class AsyncQueue {
+    private queue: (() => void)[] = [];
+    private activeCount = 0;
+    private readonly maxConcurrent: number;
+
+    constructor(maxConcurrent: number) {
+        this.maxConcurrent = maxConcurrent;
+    }
+
+    public async add<T>(task: () => Promise<T>): Promise<T> {
+        if (this.maxConcurrent === 0) {
+            return task(); // No limit
+        }
+
+        if (this.activeCount >= this.maxConcurrent) {
+            await new Promise<void>(resolve => this.queue.push(resolve));
+        }
+
+        this.activeCount++;
+        try {
+            return await task();
+        } finally {
+            this.activeCount--;
+            if (this.queue.length > 0) {
+                const next = this.queue.shift();
+                if (next) {
+                    next();
+                }
+            }
+        }
+    }
+}
 
 class PuppeteerAdapter extends utils.Adapter {
     private browser: Browser | undefined;
+    private renderQueue: AsyncQueue | undefined;
+
     public constructor(options: Partial<utils.AdapterOptions> = {}) {
         super({ ...options, name: 'puppeteer' });
 
@@ -23,6 +62,8 @@ class PuppeteerAdapter extends utils.Adapter {
         // root, and modern Linux distros that restrict unprivileged user namespaces
         // via AppArmor - otherwise the browser process fails to launch).
         const args = ['--no-sandbox', '--disable-setuid-sandbox'];
+
+        this.renderQueue = new AsyncQueue(this.config.maxParallelRenders || 0);
 
         if (this.config.additionalArgs) {
             for (const entry of this.config.additionalArgs) {
@@ -45,7 +86,7 @@ class PuppeteerAdapter extends utils.Adapter {
     }
 
     /**
-     * Is called when adapter shuts down - callback has to be called under any circumstances!
+     * Is called when the adapter shuts down - callback has to be called under any circumstances!
      *
      * @param callback callback which needs to be called
      */
@@ -63,7 +104,7 @@ class PuppeteerAdapter extends utils.Adapter {
     }
 
     /**
-     * Is called when message received
+     * Is called when a message received
      *
      * @param obj the ioBroker message object
      */
@@ -91,33 +132,49 @@ class PuppeteerAdapter extends utils.Adapter {
             const { waitMethod, waitParameter } = PuppeteerAdapter.extractWaitOptionFromMessage(options);
             const { storagePath } = PuppeteerAdapter.extractIoBrokerOptionsFromMessage(options);
             const viewport = PuppeteerAdapter.extractViewportOptionsFromMessage(options);
+            const waitUntil = PuppeteerAdapter.parseWaitUntil(options.waitUntil) ?? DEFAULT_WAIT_UNTIL;
+            const navigationTimeout =
+                PuppeteerAdapter.parseNavigationTimeout(options.navigationTimeout) ?? DEFAULT_NAVIGATION_TIMEOUT_MS;
+            delete options.waitUntil;
+            delete options.navigationTimeout;
 
             try {
                 if (options.path) {
                     this.validatePath(options.path);
                 }
 
-                const page = await this.browser.newPage();
+                await this.renderQueue!.add(async () => {
+                    let page: Page | undefined;
+                    let img: Uint8Array | undefined;
+                    try {
+                        page = await this.browser!.newPage();
+                        // Bound subsequent ops (waitForSelector, screenshot, …) so they cannot hang forever.
+                        page.setDefaultTimeout(navigationTimeout);
 
-                if (viewport) {
-                    await page.setViewport(viewport);
-                }
+                        if (viewport) {
+                            await page.setViewport(viewport);
+                        }
 
-                await page.goto(url, { waitUntil: 'networkidle2' });
+                        await page.goto(url, { waitUntil, timeout: navigationTimeout });
 
-                // if wait options given, await them
-                if (waitMethod && waitMethod in page) {
-                    await (page as any)[waitMethod](waitParameter);
-                }
+                        // if wait options given, await them
+                        if (waitMethod && waitMethod in page) {
+                            await (page as any)[waitMethod](waitParameter);
+                        }
 
-                const img = await page.screenshot(options);
-                if (storagePath) {
-                    this.log.debug(`Write file to "${storagePath}"`);
-                    await this.writeFileAsync('0_userdata.0', storagePath, Buffer.from(img));
-                }
+                        img = await page.screenshot(options);
+                        if (storagePath) {
+                            this.log.debug(`Write file to "${storagePath}"`);
+                            await this.writeFileAsync('0_userdata.0', storagePath, Buffer.from(img));
+                        }
+                    } catch (e) {
+                        this.log.error(`Could not take screenshot of "${url}": ${e.message}`);
+                    } finally {
+                        await PuppeteerAdapter.safeClosePage(page);
+                    }
 
-                await page.close();
-                this.sendTo(obj.from, obj.command, { result: img }, obj.callback);
+                    this.sendTo(obj.from, obj.command, { result: img }, obj.callback);
+                });
             } catch (e) {
                 this.log.error(`Could not take screenshot of "${url}": ${e.message}`);
                 this.sendTo(obj.from, obj.command, { error: e }, obj.callback);
@@ -146,7 +203,7 @@ class PuppeteerAdapter extends utils.Adapter {
         }
 
         // user wants to perform a screenshot
-        if (state && state.val && !state.ack) {
+        if (state?.val && !state.ack) {
             const options: ScreenshotOptions = await this.gatherScreenshotOptions();
 
             if (!options.path) {
@@ -165,17 +222,25 @@ class PuppeteerAdapter extends utils.Adapter {
             this.log.info(`Taking screenshot of "${state.val}"`);
 
             try {
-                const page = await this.browser.newPage();
-                await page.goto(state.val as string, { waitUntil: 'networkidle2' });
+                await this.renderQueue!.add(async () => {
+                    let page: Page | undefined;
+                    try {
+                        page = await this.browser!.newPage();
+                        await page.goto(state.val as string, { waitUntil: DEFAULT_WAIT_UNTIL });
 
-                await this.waitForConditions(page);
+                        await this.waitForConditions(page);
 
-                await page.screenshot(options);
+                        await page.screenshot(options);
 
-                // set ack true, to inform about screenshot creation
-                this.log.info('Screenshot sucessfully saved');
-                await this.setStateAsync(id, state.val, true);
-                await page.close();
+                        // set ack true to inform about screenshot creation
+                        this.log.info('Screenshot successfully saved');
+                        await this.setStateAsync(id, state.val, true);
+                    } catch (e) {
+                        this.log.error(`Could not take screenshot of "${state.val}": ${e.message}`);
+                    } finally {
+                        await PuppeteerAdapter.safeClosePage(page);
+                    }
+                });
             } catch (e) {
                 this.log.error(`Could not take screenshot of "${state.val}": ${e.message}`);
             }
@@ -207,7 +272,7 @@ class PuppeteerAdapter extends utils.Adapter {
                 options.clip = clipOptions;
             }
         } else {
-            this.log.debug('Ingoring clip options, because full page is desired');
+            this.log.debug('Ignoring clip options, because full page is desired');
         }
 
         return options;
@@ -276,6 +341,50 @@ class PuppeteerAdapter extends utils.Adapter {
             this.log.debug(`Waiting for timeout "${renderTimeMs}" ms`);
             await this.delay(renderTimeMs);
             return;
+        }
+    }
+
+    /**
+     * Parses a candidate `waitUntil` value (from query string or message) and returns
+     * a valid `PuppeteerLifeCycleEvent`, or `undefined` if the value is missing/invalid.
+     *
+     * @param value raw value as provided by the caller
+     */
+    private static parseWaitUntil(value: unknown): PuppeteerLifeCycleEvent | undefined {
+        if (typeof value !== 'string') {
+            return undefined;
+        }
+        return (VALID_WAIT_UNTIL as readonly string[]).includes(value) ? (value as PuppeteerLifeCycleEvent) : undefined;
+    }
+
+    /**
+     * Parses a candidate `navigationTimeout` value (ms) from a query string or message.
+     * Accepts numbers or numeric strings; returns `undefined` for missing/non-positive input.
+     *
+     * @param value raw value as provided by the caller
+     */
+    private static parseNavigationTimeout(value: unknown): number | undefined {
+        const parsed = typeof value === 'number' ? value : typeof value === 'string' ? parseInt(value, 10) : NaN;
+        return Number.isFinite(parsed) && parsed > 0 ? parsed : undefined;
+    }
+
+    /**
+     * Closes a page and swallows any errors.
+     *
+     * Why: page.close() can reject when the renderer or browser is already gone (e.g. after an OOM kill
+     * or a navigation crash). A throw here would bubble out of the finally block and skip the caller's
+     * own error handling, which is exactly what previously caused renderer processes to leak.
+     *
+     * @param page page to close (maybe undefined if newPage() itself failed)
+     */
+    private static async safeClosePage(page: Page | undefined): Promise<void> {
+        if (!page) {
+            return;
+        }
+        try {
+            await page.close();
+        } catch {
+            // ignore — the renderer is gone or already closing
         }
     }
 

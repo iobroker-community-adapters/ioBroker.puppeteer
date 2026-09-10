@@ -1,76 +1,393 @@
 {
-  "type": "panel",
-  "i18n": {
-    "additionalLaunchArgs": {
-      "en": "Additional arguments passed to the Puppeteer process",
-      "de": "Zusätzliche Argumente, die dem Puppeteer-Prozess übergeben werden",
-      "ru": "Дополнительные аргументы, переданные в процесс Puppeteer",
-      "pt": "Outros argumentos passaram para o processo Puppeteer",
-      "nl": "Aanvullende argumenten voor het Puppeteerproces",
-      "fr": "Autres arguments transmis au processus Puppeteer",
-      "it": "Ulteriori argomenti passati al processo Puppeteer",
-      "es": "Otros argumentos pasaron al proceso Puppeteer",
-      "pl": "Dodatkowe argumenty przekazane do procesu Puppeteer",
-      "uk": "Додаткові аргументи передані до процесу цуценя",
-      "zh-cn": "向Puppeteer进程提出的其他论点"
+    "type": "panel",
+    "i18n": {
+        "additionalLaunchArgs": {
+            "en": "Additional arguments passed to the Puppeteer process",
+            "de": "Zusätzliche Argumente, die dem Puppeteer-Prozess übergeben werden",
+            "ru": "Дополнительные аргументы, переданные в процесс Puppeteer",
+            "pt": "Outros argumentos passaram para o processo Puppeteer",
+            "nl": "Aanvullende argumenten voor het Puppeteerproces",
+            "fr": "Autres arguments transmis au processus Puppeteer",
+            "it": "Ulteriori argomenti passati al processo Puppeteer",
+            "es": "Otros argumentos pasaron al proceso Puppeteer",
+            "pl": "Dodatkowe argumenty przekazane do procesu Puppeteer",
+            "uk": "Додаткові аргументи передані до процесу цуценя",
+            "zh-cn": "向Puppeteer进程提出的其他论点"
+        },
+        "useExternalBrowser": {
+            "en": "Use external browser",
+            "de": "Externen Browser verwenden",
+            "ru": "Используйте внешний браузер",
+            "pt": "Utilizar um navegador externo",
+            "nl": "Externe browser gebruiken",
+            "fr": "Utiliser un navigateur externe",
+            "it": "Utilizzare un browser esterno",
+            "es": "Utilizar un navegador externo",
+            "pl": "Korzystanie z zewnętrznej przeglądarki",
+            "uk": "Використовуйте зовнішній браузер",
+            "zh-cn": "使用外部浏览器"
+        },
+        "executablePath": {
+            "en": "Path to the external browser",
+            "de": "Pfad zum externen Browser",
+            "ru": "Путь к внешнему браузеру",
+            "pt": "Caminho para o navegador externo",
+            "nl": "Pad naar de externe browser",
+            "fr": "Chemin d'accès au navigateur externe",
+            "it": "Percorso del browser esterno",
+            "es": "Ruta al navegador externo",
+            "pl": "Ścieżka do zewnętrznej przeglądarki",
+            "uk": "Шлях до зовнішнього браузера",
+            "zh-cn": "外部浏览器的路径"
+        },
+        "allowWebRequests": {
+            "en": "Allow web requests",
+            "de": "Webanfragen erlauben",
+            "ru": "Разрешить веб-запросы",
+            "pt": "Permitir solicitações da web",
+            "nl": "Webverzoeken toestaan",
+            "fr": "Autoriser les requêtes Web",
+            "it": "Consenti le richieste web",
+            "es": "Permitir solicitudes web",
+            "pl": "Zezwól na żądania sieciowe",
+            "uk": "Разрешити веб-запити",
+            "zh-cn": "允许网络请求"
+        },
+        "allowWebRequestsHelp": {
+            "en": "Allow to request the screenshot via web request. This will open a port to listen for incoming requests.",
+            "de": "Erlauben Sie, den Screenshot über eine Webanfrage anzufordern. Dadurch wird ein Port geöffnet, um eingehende Anfragen zu empfangen.",
+            "ru": "Разрешить запрашивать скриншот через веб-запрос. Это откроет порт для прослушивания входящих запросов.",
+            "pt": "Permitir solicitar a captura de tela via solicitação da web. Isso abrirá uma porta para ouvir as solicitações recebidas.",
+            "nl": "Sta toe om het screenshot op te vragen via een webverzoek. Hierdoor wordt een poort geopend om inkomende verzoeken te beluisteren.",
+            "fr": "Autoriser la demande de capture d'écran via une requête Web. Cela ouvrira un port pour écouter les demandes entrantes.",
+            "it": "Consentire la richiesta dello screenshot tramite richiesta web. Ciò aprirà una porta per ascoltare le richieste in arrivo.",
+            "es": "Permitir solicitar la captura de pantalla a través de una solicitud web. Esto abrirá un puerto para escuchar las solicitudes entrantes.",
+            "pl": "Zezwól na żądanie zrzutu ekranu za pomocą żądania sieciowego. To otworzy port do nasłuchiwania przychodzących żądań.",
+            "uk": "Дозволити запитувати скриншот через веб-запрос. Это откроет порт для прослушивания входящих запросов.",
+            "zh-cn": "允许通过网络请求请求屏幕截图。这将打开一个端口来监听传入的请求。"
+        },
+        "webPort": {
+            "en": "Web port",
+            "de": "Web Port",
+            "ru": "Веб-порт",
+            "pt": "Porta da web",
+            "nl": "Webpoort",
+            "fr": "Port Web",
+            "it": "Porta web",
+            "es": "Puerto web",
+            "pl": "Port sieciowy",
+            "uk": "Веб-порт",
+            "zh-cn": "网络端口"
+        },
+        "bindAddress": {
+            "en": "IP / Bind address",
+            "de": "IP / Bind-Adresse",
+            "ru": "IP / Адрес привязки",
+            "pt": "IP / Endereço de ligação",
+            "nl": "IP / Bindadres",
+            "fr": "IP / Adresse de liaison",
+            "it": "IP / Indirizzo di bind",
+            "es": "IP / Dirección de enlace",
+            "pl": "IP / Adres powiązania",
+            "uk": "IP / Адреса прив'язки",
+            "zh-cn": "IP / 绑定地址"
+        },
+        "port": {
+            "en": "Port",
+            "de": "Port",
+            "ru": "Порт",
+            "pt": "Porta",
+            "nl": "Poort",
+            "fr": "Port",
+            "it": "Porta",
+            "es": "Puerto",
+            "pl": "Port",
+            "uk": "Порт",
+            "zh-cn": "端口"
+        },
+        "secure": {
+            "en": "Secure (HTTPS)",
+            "de": "Sicher (HTTPS)",
+            "ru": "Безопасный (HTTPS)",
+            "pt": "Seguro (HTTPS)",
+            "nl": "Beveiligd (HTTPS)",
+            "fr": "Sécurisé (HTTPS)",
+            "it": "Sicuro (HTTPS)",
+            "es": "Seguro (HTTPS)",
+            "pl": "Bezpieczny (HTTPS)",
+            "uk": "Захищений (HTTPS)",
+            "zh-cn": "安全 (HTTPS)"
+        },
+        "certPublic": {
+            "en": "Public certificate",
+            "de": "Öffentliches Zertifikat",
+            "ru": "Публичный сертификат",
+            "pt": "Certificado público",
+            "nl": "Openbaar certificaat",
+            "fr": "Certificat public",
+            "it": "Certificato pubblico",
+            "es": "Certificado público",
+            "pl": "Certyfikat publiczny",
+            "uk": "Публічний сертифікат",
+            "zh-cn": "公共证书"
+        },
+        "certPrivate": {
+            "en": "Private certificate",
+            "de": "Privates Zertifikat",
+            "ru": "Частный сертификат",
+            "pt": "Certificado privado",
+            "nl": "Privé certificaat",
+            "fr": "Certificat privé",
+            "it": "Certificato privato",
+            "es": "Certificado privado",
+            "pl": "Certyfikat prywatny",
+            "uk": "Приватний сертифікат",
+            "zh-cn": "私有证书"
+        },
+        "certChained": {
+            "en": "Chained certificate",
+            "de": "Verkettetes Zertifikat",
+            "ru": "Цепочка сертификатов",
+            "pt": "Certificado encadeado",
+            "nl": "Geketend certificaat",
+            "fr": "Certificat chaîné",
+            "it": "Certificato concatenato",
+            "es": "Certificado encadenado",
+            "pl": "Certyfikat łańcuchowy",
+            "uk": "Ланцюговий сертифікат",
+            "zh-cn": "链式证书"
+        },
+        "auth": {
+            "en": "Authentication",
+            "de": "Authentifizierung",
+            "ru": "Аутентификация",
+            "pt": "Autenticação",
+            "nl": "Authenticatie",
+            "fr": "Authentification",
+            "it": "Autenticazione",
+            "es": "Autenticación",
+            "pl": "Uwierzytelnianie",
+            "uk": "Аутентифікація",
+            "zh-cn": "身份验证"
+        },
+        "argument": {
+            "en": "Argument",
+            "de": "Argument",
+            "ru": "Аргумент",
+            "pt": "Argumento",
+            "nl": "Argument",
+            "fr": "Argument",
+            "it": "Argomento",
+            "es": "Argumento",
+            "pl": "Argument",
+            "uk": "Аргумент",
+            "zh-cn": "参数"
+        },
+        "warningTitle": {
+            "en": "Warning!",
+            "de": "Warnung!",
+            "ru": "Предупреждение!",
+            "pt": "Aviso!",
+            "nl": "Waarschuwing!",
+            "fr": "Avertissement !",
+            "it": "Attenzione!",
+            "es": "¡Advertencia!",
+            "pl": "Ostrzeżenie!",
+            "uk": "Попередження!",
+            "zh-cn": "警告！"
+        },
+        "unsecureAuth": {
+            "en": "Authentication is enabled without HTTPS. Credentials may be transmitted in plain text. Are you sure?",
+            "de": "Authentifizierung ist ohne HTTPS aktiviert. Zugangsdaten könnten im Klartext übertragen werden. Sind Sie sicher?",
+            "ru": "Аутентификация включена без HTTPS. Учётные данные могут передаваться в открытом виде. Вы уверены?",
+            "pt": "A autenticação está ativada sem HTTPS. As credenciais podem ser transmitidas em texto simples. Tem certeza?",
+            "nl": "Authenticatie is ingeschakeld zonder HTTPS. Inloggegevens kunnen in platte tekst worden verzonden. Weet u het zeker?",
+            "fr": "L'authentification est activée sans HTTPS. Les identifiants peuvent être transmis en clair. Êtes-vous sûr ?",
+            "it": "L'autenticazione è abilitata senza HTTPS. Le credenziali potrebbero essere trasmesse in chiaro. Sei sicuro?",
+            "es": "La autenticación está habilitada sin HTTPS. Las credenciales pueden transmitirse en texto plano. ¿Está seguro?",
+            "pl": "Uwierzytelnianie jest włączone bez HTTPS. Dane uwierzytelniające mogą być przesyłane w postaci zwykłego tekstu. Czy jesteś pewny?",
+            "uk": "Аутентифікацію увімкнено без HTTPS. Облікові дані можуть передаватися у відкритому вигляді. Ви впевнені?",
+            "zh-cn": "已在没有 HTTPS 的情况下启用身份验证。凭据可能以明文传输。你确定吗？"
+        },
+        "ignoreWarning": {
+            "en": "Ignore warning",
+            "de": "Warnung ignorieren",
+            "ru": "Игнорировать предупреждение",
+            "pt": "Ignorar aviso",
+            "nl": "Waarschuwing negeren",
+            "fr": "Ignorer l'avertissement",
+            "it": "Ignora avviso",
+            "es": "Ignorar advertencia",
+            "pl": "Zignoruj ostrzeżenie",
+            "uk": "Ігнорувати попередження",
+            "zh-cn": "忽略警告"
+        },
+        "disableAuth": {
+            "en": "Disable authentication",
+            "de": "Authentifizierung deaktivieren",
+            "ru": "Отключить аутентификацию",
+            "pt": "Desativar autenticação",
+            "nl": "Authenticatie uitschakelen",
+            "fr": "Désactiver l'authentification",
+            "it": "Disabilita autenticazione",
+            "es": "Deshabilitar autenticación",
+            "pl": "Wyłącz uwierzytelnianie",
+            "uk": "Вимкнути автентифікацію",
+            "zh-cn": "禁用身份验证"
+        },
+        "maxParallelRenders": {
+            "en": "Max. parallel renders",
+            "de": "Max. parallele Renders",
+            "ru": "Макс. параллельных процессов",
+            "pt": "Máx. renderizações paralelas",
+            "nl": "Max. parallelle renders",
+            "fr": "Max. rendus parallèles",
+            "it": "Max. rendering paralleli",
+            "es": "Máx. renders paralelos",
+            "pl": "Maks. renderów równoległych",
+            "uk": "Макс. паралельних рендерів",
+            "zh-cn": "最大并行渲染数"
+        },
+        "maxParallelRendersHelp": {
+            "en": "How many screenshots/pages should be active at the same time. 0 = unlimited. Set this to reduce RAM usage.",
+            "de": "Wie viele Screenshots/Seiten dürfen gleichzeitig aktiv sein. 0 = unbegrenzt. Reduzieren Sie den Wert, um RAM zu sparen.",
+            "ru": "Сколько скриншотов/страниц должно быть активно одновременно. 0 = не ограничено. Уменьшите для экономии ОЗУ.",
+            "pt": "Quantas capturas de tela/páginas devem estar ativas ao mesmo tempo. 0 = ilimitado. Defina para reduzir o uso de RAM.",
+            "nl": "Hoeveel screenshots/pagina's er tegelijkertijd actief mogen zijn. 0 = onbeperkt. Verlaag dit om RAM te besparen.",
+            "fr": "Combien de captures d'écran/pages doivent être actives en même temps. 0 = illimité. Définir cela pour réduire l'utilisation de la RAM.",
+            "it": "Quanti screenshot/pagine dovrebbero essere attivi contemporaneamente. 0 = illimitato. Impostalo per ridurre l'utilizzo della RAM.",
+            "es": "Cuántas capturas de pantalla/páginas deben estar activas al mismo tiempo. 0 = ilimitado. Establézcalo para reducir el uso de RAM.",
+            "pl": "Ile zrzutów ekranu/stron powinno być aktywnych jednocześnie. 0 = bez limitu. Ustawić to, aby zaoszczędzić RAM.",
+            "uk": "Скільки скріншотів/сторінок повинно бути активними одночасно. 0 = необмежено. Зменшіть, щоб заощадити RAM.",
+            "zh-cn": "同时允许多少个屏幕截图/页面处于活动状态。 0 = 无限制。将其调低以减少 RAM 使用。"
+        }
     },
-    "useExternalBrowser": {
-      "en": "Use external browser",
-      "de": "Externen Browser verwenden",
-      "ru": "Используйте внешний браузер",
-      "pt": "Utilizar um navegador externo",
-      "nl": "Externe browser gebruiken",
-      "fr": "Utiliser un navigateur externe",
-      "it": "Utilizzare un browser esterno",
-      "es": "Utilizar un navegador externo",
-      "pl": "Korzystanie z zewnętrznej przeglądarki",
-      "uk": "Використовуйте зовнішній браузер",
-      "zh-cn": "使用外部浏览器"
-    },
-    "executablePath": {
-      "en": "Path to the external browser",
-      "de": "Pfad zum externen Browser",
-      "ru": "Путь к внешнему браузеру",
-      "pt": "Caminho para o navegador externo",
-      "nl": "Pad naar de externe browser",
-      "fr": "Chemin d'accès au navigateur externe",
-      "it": "Percorso del browser esterno",
-      "es": "Ruta al navegador externo",
-      "pl": "Ścieżka do zewnętrznej przeglądarki",
-      "uk": "Шлях до зовнішнього браузера",
-      "zh-cn": "外部浏览器的路径"
+    "items": {
+        "useExternalBrowser": {
+            "type": "checkbox",
+            "label": "useExternalBrowser"
+        },
+        "executablePath": {
+            "placeholder": "/usr/bin/chromium-browser",
+            "hidden": "!data.useExternalBrowser",
+            "newLine": true,
+            "type": "text",
+            "label": "executablePath"
+        },
+        "additionalArgs": {
+            "newLine": true,
+            "label": "additionalLaunchArgs",
+            "type": "table",
+            "uniqueColumns": ["Argument"],
+            "xs": 12,
+            "items": [
+                {
+                    "attr": "Argument",
+                    "label": "Argument",
+                    "filter": false,
+                    "sort": false,
+                    "type": "autocomplete",
+                    "freeSolo": true,
+                    "options": ["--disable-lcd-text", "--disable-composited-antialiasing"]
+                }
+            ]
+        },
+        "maxParallelRenders": {
+            "newLine": true,
+            "type": "number",
+            "min": 0,
+            "step": 1,
+            "label": "maxParallelRenders",
+            "help": "maxParallelRendersHelp"
+        },
+        "allowWebAccess": {
+            "newLine": true,
+            "type": "checkbox",
+            "label": "allowWebRequests",
+            "help": "allowWebRequestsHelp"
+        },
+        "bind": {
+            "hidden": "!data.allowWebAccess",
+            "newLine": true,
+            "type": "ip",
+            "listenOnAllPorts": true,
+            "label": "bindAddress",
+            "xs": 12,
+            "sm": 12,
+            "md": 8,
+            "lg": 5
+        },
+        "port": {
+            "hidden": "!data.allowWebAccess",
+            "type": "number",
+            "min": 1,
+            "max": 65565,
+            "label": "port",
+            "xs": 12,
+            "sm": 12,
+            "md": 4,
+            "lg": 3
+        },
+        "secure": {
+            "hidden": "!data.allowWebAccess",
+            "newLine": true,
+            "type": "checkbox",
+            "label": "secure",
+            "xs": 12,
+            "sm": 12,
+            "md": 6,
+            "lg": 2
+        },
+        "certPublic": {
+            "type": "certificate",
+            "hidden": "!data.secure || !data.allowWebAccess",
+            "certType": "public",
+            "validator": "!data.secure || data.certPublic",
+            "label": "certPublic",
+            "xs": 12,
+            "sm": 12,
+            "md": 6,
+            "lg": 2
+        },
+        "certPrivate": {
+            "hidden": "!data.secure || !data.allowWebAccess",
+            "type": "certificate",
+            "certType": "private",
+            "validator": "!data.secure || data.certPrivate",
+            "label": "certPrivate",
+            "xs": 12,
+            "sm": 12,
+            "md": 6,
+            "lg": 2
+        },
+        "certChained": {
+            "hidden": "!data.secure || !data.allowWebAccess",
+            "type": "certificate",
+            "certType": "chained",
+            "label": "certChained",
+            "xs": 12,
+            "sm": 12,
+            "md": 6,
+            "lg": 2
+        },
+        "auth": {
+            "newLine": true,
+            "hidden": "!data.allowWebAccess",
+            "type": "checkbox",
+            "confirm": {
+                "condition": "!data.secure && data.auth",
+                "title": "warningTitle",
+                "text": "unsecureAuth",
+                "ok": "ignoreWarning",
+                "cancel": "disableAuth",
+                "type": "warning",
+                "alsoDependsOn": ["secure"]
+            },
+            "label": "auth",
+            "xs": 12,
+            "sm": 12,
+            "md": 6,
+            "lg": 2
+        }
     }
-  },
-  "items": {
-    "useExternalBrowser": {
-      "type": "checkbox",
-      "label": "useExternalBrowser"
-    },
-    "executablePath": {
-      "placeholder": "/usr/bin/chromium-browser",
-      "hidden": "!data.useExternalBrowser",
-      "newLine": true,
-      "type": "text",
-      "label": "executablePath"
-    },
-    "additionalArgs": {
-      "newLine": true,
-      "label": "additionalLaunchArgs",
-      "type": "table",
-      "uniqueColumns": ["Argument"],
-      "xs": 12,
-      "items": [{
-        "attr": "Argument",
-        "label": "Argument",
-        "filter": false,
-        "sort": false,
-        "type": "autocomplete",
-        "freeSolo": true,
-        "options": [
-          "--disable-lcd-text",
-          "--disable-composited-antialiasing"
-        ]
-      }]
-    }
-  }
 }

@@ -201,7 +201,8 @@
   "native": {
     "additionalArgs": [],
     "useExternalBrowser": false,
-    "executablePath": ""
+    "executablePath": "",
+    "maxParallelRenders": 0
   },
   "objects": [],
   "instanceObjects": [
