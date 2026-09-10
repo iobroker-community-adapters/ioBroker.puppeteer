@@ -140,11 +140,6 @@
     "compact": true,
     "connectionType": "local",
     "dataSource": "poll",
-    "dependencies": [
-      {
-        "js-controller": ">=6.0.11"
-      }
-    ],
     "osDependencies": {
       "linux": [
         "ca-certificates",
@@ -191,6 +186,11 @@
       "type": "free",
       "license": "MIT"
     },
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.11"
+      }
+    ],
     "globalDependencies": [
       {
         "admin": ">=7.7.22"
