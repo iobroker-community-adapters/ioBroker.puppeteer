@@ -19,19 +19,26 @@ class PuppeteerAdapter extends utils.Adapter {
      * Is called when databases are connected and adapter received configuration.
      */
     private async onReady(): Promise<void> {
-        let additionalArgs: string[] | undefined;
+        // Chrome needs to run without its sandbox on most ioBroker hosts (Docker,
+        // root, and modern Linux distros that restrict unprivileged user namespaces
+        // via AppArmor - otherwise the browser process fails to launch).
+        const args = ['--no-sandbox', '--disable-setuid-sandbox'];
 
         if (this.config.additionalArgs) {
-            additionalArgs = this.config.additionalArgs.map(entry => entry.Argument);
+            for (const entry of this.config.additionalArgs) {
+                if (!args.includes(entry.Argument)) {
+                    args.push(entry.Argument);
+                }
+            }
         }
 
-        this.log.debug(`Additional arguments: ${JSON.stringify(additionalArgs)}`);
+        this.log.debug(`Launch arguments: ${JSON.stringify(args)}`);
 
         this.browser = await puppeteer.launch({
             headless: true,
             defaultViewport: null,
             executablePath: this.config.useExternalBrowser ? this.config.executablePath : undefined,
-            args: additionalArgs
+            args
         });
         this.subscribeStates('url');
         this.log.info('Ready to take screenshots');
