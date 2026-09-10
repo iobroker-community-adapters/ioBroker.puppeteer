@@ -2,10 +2,10 @@
   "name": "iobroker.puppeteer",
   "version": "0.4.0",
   "description": "Headless browser to generate screenshots based on Chrome",
-  "author": {
-    "name": "Moritz Heusinger",
-    "email": "moritz.heusinger@gmail.com"
-  },
+  "author": "Moritz Heusinger <moritz.heusinger@gmail.com>",
+  "contributors": [
+    "iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
+  ],
   "engines": {
     "node": ">=22"
   },

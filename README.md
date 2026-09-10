@@ -140,6 +140,8 @@ sendTo('puppeteer.0', 'screenshot', { url: 'https://www.google.com',
 -->
 ### **WORK IN PROGRESS**
 - (copilot) Adapter requires node.js >= 22 now
+- (copilot) Adapter requires js-controller >= 6.0.11 now
+- (copilot) Adapter requires admin >= 7.7.22 now
 
 ### 0.4.0 (2024-09-17)
 * (@foxriver76) updated puppeteer dependency
@@ -180,6 +182,8 @@ sendTo('puppeteer.0', 'screenshot', { url: 'https://www.google.com',
 ## License
 MIT License
 
+
+Copyright (c) 2026 iobroker-community-adapters <iobroker-community-adapters@gmx.de>  
 Copyright (c) 2024 Moritz Heusinger <moritz.heusinger@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
