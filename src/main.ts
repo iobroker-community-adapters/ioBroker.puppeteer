@@ -38,7 +38,7 @@ class PuppeteerAdapter extends utils.Adapter {
             headless: true,
             defaultViewport: null,
             executablePath: this.config.useExternalBrowser ? this.config.executablePath : undefined,
-            args
+            args,
         });
         this.subscribeStates('url');
         this.log.info('Ready to take screenshots');
@@ -128,7 +128,7 @@ class PuppeteerAdapter extends utils.Adapter {
                 obj.from,
                 obj.command,
                 { error: new Error(`Unsupported message command: ${obj.command}`) },
-                obj.callback
+                obj.callback,
             );
         }
     }
@@ -223,7 +223,7 @@ class PuppeteerAdapter extends utils.Adapter {
             clipLeft: 'x',
             clipTop: 'y',
             clipHeight: 'height',
-            clipWidth: 'width'
+            clipWidth: 'width',
         } as const;
 
         for (const [id, attributeName] of Object.entries(clipAttributes)) {
