@@ -40,6 +40,12 @@ jobs:
         node-version: [22.x, 24.x, 26.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
+    # Use a fresh, workspace-local puppeteer cache. The runner images ship a
+    # pre-seeded cache where the Chrome folder exists but the executable is
+    # missing, which makes puppeteer's install abort instead of re-downloading.
+    env:
+      PUPPETEER_CACHE_DIR: ${{ github.workspace }}/.cache/puppeteer
+
     steps:
       - uses: ioBroker/testing-action-adapter@v1
         with:
