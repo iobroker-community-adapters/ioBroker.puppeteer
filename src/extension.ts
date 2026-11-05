@@ -160,6 +160,12 @@ export default class PuppeteerWebExtension {
     private unloaded = false;
 
     /**
+     * Tells `ioBroker.web` that it can stop this extension and start it again with new settings while it keeps
+     * running, instead of restarting itself: the extension has nothing but its route, which web takes back by itself.
+     */
+    public readonly supportsHotReload = true;
+
+    /**
      * Called by `ioBroker.web` - the argument list is its extension contract.
      *
      * @param _server the http(s) server of the web instance, unused here
@@ -211,9 +217,10 @@ export default class PuppeteerWebExtension {
     }
 
     /**
-     * Called by `ioBroker.web` when it shuts down.
+     * Called by `ioBroker.web` when it shuts down or stops this extension.
      *
-     * Express cannot un-register a route, so the handler stays installed and is made inert instead.
+     * Newer versions of web drop the route by themselves. Older ones cannot un-register it, so the handler is
+     * made inert as well.
      */
     public unload(): Promise<void> {
         this.unloaded = true;

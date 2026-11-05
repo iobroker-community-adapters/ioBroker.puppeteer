@@ -228,6 +228,9 @@ This adapter would not have been possible without the great work of @foxriver67 
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- (@GermanBluefox) ioBroker.web can stop the web extension and start it again with new settings instead of restarting itself (`supportsHotReload`, with a version of web that supports it)
+
 ### 1.1.1 (2026-10-11)
 
 - (mcm1957) issues reported by repositorychecker have been fixed
