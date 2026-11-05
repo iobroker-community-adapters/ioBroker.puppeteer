@@ -1,4 +1,8 @@
 # Older changes
+## 0.3.0 (2024-05-19)
+* (foxriver76) allowed specifying additional arguments for the puppeteer process
+* (foxriver76) updated puppeteer dependency
+
 ## 0.2.8 (2024-01-09)
 * (foxriver76) update puppeteer dependency
 

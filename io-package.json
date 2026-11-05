@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "puppeteer",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "news": {
+      "1.1.2": {
+        "en": "ioBroker.web can stop the web extension and start it again with new settings instead of restarting itself (`supportsHotReload`, with a version of web that supports it)",
+        "de": "ioBroker.Web kann die Web-Erweiterung beenden und mit neuen Einstellungen starten, statt sich selbst neu zu starten (`SupportHotReload`, mit einer Webversion, die das unterstützt)",
+        "ru": "IOBroker.web может остановить веб-расширение и запустить его снова с новыми настройками вместо перезапуска (`supportShotReload`, с поддерживающей его веб-версией)",
+        "pt": "IOBroker.web pode parar a extensão web e reiniciá-la com novas configurações em vez de se reiniciar (`supportsHotReload`, com uma versão da web compatível)",
+        "nl": "IOBroker.web kan de webextensie stoppen en opnieuw starten met nieuwe instellingen in plaats van zichzelf opnieuw op te starten (`SupportHotReload`, met een webversie die dit ondersteunt)",
+        "fr": "IObroker.web peut arrêter l'extension Web et la redémarrer avec de nouveaux paramètres au lieu de la redémarrer elle-même (« SupportShotReload », avec une version du Web qui la supporte)",
+        "it": "IOBroker.web può fermare l'estensione web e riavviarla con nuove impostazioni invece di riavviarsi (`SupportShotReload`, con una versione web che la supporta)",
+        "es": "IOBroker.web puede detener la extensión web y volver a iniciarla con nuevos ajustes en lugar de reiniciarse solo (`SupportShotReload`, con una versión de la web que la admita)",
+        "pl": "Iobroker.web może zatrzymać rozszerzenie internetowe i uruchomić je ponownie z nowymi ustawieniami zamiast ponownego uruchamiania (`SupportShotreload`, z wersją sieci, która je obsługuje)",
+        "uk": "IObroker.web може зупинити веб-розширення та запустити його знову з новими налаштуваннями замість того, щоб перезавантажувати себе (`SupportShotReload`, з веб-версією, яка підтримує його)",
+        "zh-cn": "iobroker.Web 可以停止网络扩展程序并使用新设置重新启动它，而不是自行重启（`supportShotReload`，使用支持它的网络版本）"
+      },
       "1.1.1": {
         "en": "issues reported by repositorychecker have been fixed\ndependencies have been updated",
         "de": "Von RepositoryChecker gemeldete Probleme wurden behoben\nAbhängigkeiten wurden aktualisiert",
@@ -80,19 +93,6 @@
         "pl": "aktualizacja zależności lalkarz",
         "uk": "оновлення залежності цуценя",
         "zh-cn": "更新傀儡依赖"
-      },
-      "0.2.7": {
-        "en": "update puppeteer dependency",
-        "de": "aktualisierung puppeteer abhängigkeit",
-        "ru": "обновить зависимость puppeteer",
-        "pt": "update puppeteer dependência",
-        "nl": "vertaling:",
-        "fr": "mettre à jour la dépendance des marionnettistes",
-        "it": "aggiornamento dipendenze del burattino",
-        "es": "actualización de la dependencia del titiritero",
-        "pl": "aktualizacja marionetki",
-        "uk": "оновлення залежності цуценя",
-        "zh-cn": "二. 重新依赖"
       }
     },
     "titleLang": {
